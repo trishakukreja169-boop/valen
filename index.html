@@ -2,55 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Georgia', 'Times New Roman', serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #f5d4e3 0%, #e8c5da 25%, #d4b5e0 50%, #c5d5f0 75%, #d4e8f5 100%);
-            overflow-x: hidden;
-            padding: 10px;
-            position: relative;
+            overflow: hidden;
         }
 
         .container {
             position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
+            width: 90%;
+            max-width: 600px;
         }
 
-        /* Chat Bubbles - Mobile Optimized */
         .chat-bubble {
             position: absolute;
             background: white;
-            padding: 10px 14px;
-            border-radius: 18px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
-            font-size: 12px;
+            padding: 12px 18px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 14px;
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 10;
             display: flex;
             align-items: center;
             gap: 8px;
-            max-width: 85%;
         }
 
         .chat-bubble.show {
@@ -58,118 +47,95 @@
         }
 
         .chat-bubble-1 {
-            top: -65px;
-            right: 5px;
-            left: auto;
+            top: -80px;
+            right: 20px;
         }
 
         .chat-bubble-2 {
-            top: 35px;
-            right: 5px;
-            left: auto;
+            top: 50px;
+            right: -20px;
         }
 
         .chat-img {
-            width: 32px;
-            height: 32px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             object-fit: cover;
-            flex-shrink: 0;
         }
 
-        .chat-bubble span {
-            font-size: 12px;
-            line-height: 1.4;
-        }
-
-        /* Main Card - Mobile First */
         .card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 35px 20px;
+            border-radius: 30px;
+            padding: 60px 40px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             position: relative;
         }
 
         .question-label {
-            font-size: 10px;
-            letter-spacing: 1.5px;
+            font-size: 13px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            color: #888;
-            margin-bottom: 15px;
-            font-weight: 500;
+            color: #666;
+            margin-bottom: 20px;
         }
 
         .main-question {
-            font-size: 26px;
+            font-size: 42px;
             font-weight: bold;
             color: #5a1845;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             font-style: italic;
             line-height: 1.3;
-            padding: 0 5px;
         }
 
         .subtext {
             color: #666;
-            font-size: 13px;
-            margin-bottom: 30px;
+            font-size: 15px;
+            margin-bottom: 35px;
             font-style: italic;
-            line-height: 1.5;
-            padding: 0 10px;
         }
 
-        /* Buttons - Mobile Optimized */
         .button-container {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         button {
-            width: 100%;
-            padding: 16px 20px;
+            padding: 15px 40px;
             border: none;
-            border-radius: 50px;
-            font-size: 15px;
+            border-radius: 25px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             font-family: inherit;
-            touch-action: manipulation;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button:active {
-            transform: scale(0.98);
         }
 
         .yes-btn {
             background: linear-gradient(135deg, #e891c5, #d37fb5);
             color: white;
-            box-shadow: 0 4px 15px rgba(227, 145, 197, 0.5);
-            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(227, 145, 197, 0.4);
         }
 
-        .yes-btn:active {
-            box-shadow: 0 2px 10px rgba(227, 145, 197, 0.6);
+        .yes-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(227, 145, 197, 0.6);
         }
 
         .no-btn {
-            background: #f5f5f5;
+            background: #f0f0f0;
             color: #666;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .no-btn:active {
-            background: #e8e8e8;
+        .no-btn:hover {
+            background: #e0e0e0;
         }
 
-        /* Success Page - Mobile Optimized */
+        /* Success Page */
         .success-page {
             display: none;
             text-align: center;
@@ -181,24 +147,16 @@
         }
 
         @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: scale(1); 
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .success-title {
-            font-size: 32px;
+            font-size: 48px;
             font-weight: bold;
             color: #5a1845;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-style: italic;
-            line-height: 1.2;
-            padding: 0 10px;
         }
 
         .success-title .heart {
@@ -209,37 +167,32 @@
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.15); }
+            25% { transform: scale(1.1); }
             50% { transform: scale(1); }
         }
 
         .success-subtitle {
             color: #666;
-            font-size: 14px;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            padding: 0 15px;
+            font-size: 16px;
+            margin-bottom: 35px;
         }
 
-        /* Photo Frame - Mobile Optimized */
         .photo-frame {
-            width: 100%;
-            max-width: 260px;
-            height: 320px;
+            width: 280px;
+            height: 350px;
             margin: 0 auto 20px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
-            padding: 4px;
+            padding: 3px;
         }
 
         .photo-inner {
             width: 100%;
             height: 100%;
-            border-radius: 17px;
+            border-radius: 18px;
             overflow: hidden;
-            background: #fff;
         }
 
         .photo-inner img {
@@ -249,25 +202,22 @@
         }
 
         .bottom-message {
-            font-size: 14px;
+            font-size: 15px;
             color: #666;
             font-style: italic;
-            line-height: 1.5;
-            padding: 0 10px;
         }
 
         .bottom-message .emoji {
             color: #ff69b4;
         }
 
-        /* Floating Hearts - Optimized */
+        /* Floating hearts animation */
         .heart-float {
             position: fixed;
-            font-size: 25px;
+            font-size: 30px;
             opacity: 0;
             animation: float 4s ease-in infinite;
             pointer-events: none;
-            z-index: 100;
         }
 
         @keyframes float {
@@ -282,41 +232,39 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-120vh) rotate(360deg);
+                transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        /* Music Control - Mobile Optimized */
+        /* Music Control Button */
         .music-control {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 56px;
-            height: 56px;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, #e891c5, #d37fb5);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(227, 145, 197, 0.5);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(227, 145, 197, 0.4);
+            transition: all 0.3s ease;
             z-index: 1000;
-            touch-action: manipulation;
         }
 
-        .music-control:active {
-            transform: scale(0.95);
-            box-shadow: 0 2px 15px rgba(227, 145, 197, 0.6);
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(227, 145, 197, 0.6);
         }
 
         .music-icon {
-            width: 22px;
-            height: 22px;
-            stroke-width: 2.5;
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
             stroke: white;
-            fill: none;
         }
 
         .music-control.playing {
@@ -325,329 +273,48 @@
 
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 4px 20px rgba(227, 145, 197, 0.5);
+                box-shadow: 0 4px 15px rgba(227, 145, 197, 0.4);
             }
             50% {
-                box-shadow: 0 6px 30px rgba(227, 145, 197, 0.8);
+                box-shadow: 0 4px 25px rgba(227, 145, 197, 0.8);
             }
         }
 
-        /* Loading Indicator */
-        .loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(227, 145, 197, 0.3);
-            border-top: 4px solid #e891c5;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        /* Music waves animation */
+        .music-waves {
             display: none;
-            z-index: 2000;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 3px;
+            height: 24px;
         }
 
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        .music-waves.active {
+            display: flex;
         }
 
-        /* ===================================== */
-        /* TABLET OPTIMIZATIONS (481px - 768px) */
-        /* ===================================== */
-        @media screen and (min-width: 481px) and (max-width: 768px) {
-            .container {
-                max-width: 550px;
-            }
-
-            .card {
-                padding: 45px 30px;
-                border-radius: 28px;
-            }
-
-            .main-question {
-                font-size: 34px;
-            }
-
-            .subtext {
-                font-size: 14px;
-            }
-
-            .button-container {
-                gap: 15px;
-            }
-
-            button {
-                padding: 17px 25px;
-                font-size: 16px;
-            }
-
-            .success-title {
-                font-size: 38px;
-            }
-
-            .success-subtitle {
-                font-size: 15px;
-            }
-
-            .photo-frame {
-                max-width: 280px;
-                height: 350px;
-            }
-
-            .chat-bubble {
-                font-size: 13px;
-                padding: 12px 16px;
-            }
-
-            .chat-bubble-1 {
-                top: -70px;
-            }
+        .wave {
+            width: 3px;
+            background: white;
+            border-radius: 2px;
+            animation: wave 0.8s ease-in-out infinite;
         }
 
-        /* ===================================== */
-        /* DESKTOP OPTIMIZATIONS (769px+) */
-        /* ===================================== */
-        @media screen and (min-width: 769px) {
-            body {
-                padding: 20px;
-            }
+        .wave:nth-child(1) { height: 8px; animation-delay: 0s; }
+        .wave:nth-child(2) { height: 14px; animation-delay: 0.2s; }
+        .wave:nth-child(3) { height: 18px; animation-delay: 0.4s; }
+        .wave:nth-child(4) { height: 14px; animation-delay: 0.6s; }
+        .wave:nth-child(5) { height: 8px; animation-delay: 0.8s; }
 
-            .container {
-                max-width: 600px;
-            }
-
-            .card {
-                padding: 60px 40px;
-                border-radius: 30px;
-            }
-
-            .main-question {
-                font-size: 42px;
-            }
-
-            .question-label {
-                font-size: 13px;
-                letter-spacing: 2px;
-            }
-
-            .subtext {
-                font-size: 15px;
-                margin-bottom: 35px;
-            }
-
-            .button-container {
-                flex-direction: row;
-                gap: 20px;
-            }
-
-            button {
-                width: auto;
-                padding: 15px 40px;
-                font-size: 16px;
-            }
-
-            button:hover {
-                transform: translateY(-2px);
-            }
-
-            .yes-btn:hover {
-                box-shadow: 0 6px 20px rgba(227, 145, 197, 0.6);
-            }
-
-            .no-btn:hover {
-                background: #e8e8e8;
-            }
-
-            .success-title {
-                font-size: 48px;
-                margin-bottom: 20px;
-            }
-
-            .success-subtitle {
-                font-size: 16px;
-                margin-bottom: 35px;
-            }
-
-            .photo-frame {
-                max-width: 300px;
-                height: 370px;
-            }
-
-            .bottom-message {
-                font-size: 15px;
-            }
-
-            .chat-bubble {
-                font-size: 14px;
-                padding: 12px 18px;
-            }
-
-            .chat-bubble-1 {
-                top: -80px;
-                right: 20px;
-            }
-
-            .chat-bubble-2 {
-                top: 50px;
-                right: -20px;
-            }
-
-            .music-control {
-                width: 60px;
-                height: 60px;
-                bottom: 30px;
-                right: 30px;
-            }
-
-            .music-control:hover {
-                transform: scale(1.1);
-            }
-
-            .music-icon {
-                width: 24px;
-                height: 24px;
-            }
-        }
-
-        /* ===================================== */
-        /* LANDSCAPE MODE (Mobile) */
-        /* ===================================== */
-        @media screen and (max-height: 500px) and (orientation: landscape) {
-            body {
-                padding: 15px 10px;
-            }
-
-            .card {
-                padding: 25px 30px;
-            }
-
-            .main-question {
-                font-size: 24px;
-                margin-bottom: 8px;
-            }
-
-            .question-label {
-                font-size: 9px;
-                margin-bottom: 10px;
-            }
-
-            .subtext {
-                font-size: 12px;
-                margin-bottom: 20px;
-            }
-
-            .button-container {
-                flex-direction: row;
-                gap: 10px;
-            }
-
-            button {
-                padding: 12px 25px;
-                font-size: 14px;
-            }
-
-            .success-title {
-                font-size: 28px;
-                margin-bottom: 12px;
-            }
-
-            .success-subtitle {
-                font-size: 13px;
-                margin-bottom: 15px;
-            }
-
-            .photo-frame {
-                max-width: 200px;
-                height: 250px;
-            }
-
-            .bottom-message {
-                font-size: 12px;
-            }
-
-            .chat-bubble-1 {
-                top: -55px;
-            }
-
-            .chat-bubble-2 {
-                top: 25px;
-            }
-
-            .music-control {
-                width: 50px;
-                height: 50px;
-                bottom: 15px;
-                right: 15px;
-            }
-        }
-
-        /* ===================================== */
-        /* VERY SMALL DEVICES (< 375px) */
-        /* ===================================== */
-        @media screen and (max-width: 374px) {
-            .main-question {
-                font-size: 23px;
-            }
-
-            .card {
-                padding: 30px 15px;
-            }
-
-            .subtext {
-                font-size: 12px;
-            }
-
-            button {
-                padding: 14px 18px;
-                font-size: 14px;
-            }
-
-            .success-title {
-                font-size: 28px;
-            }
-
-            .photo-frame {
-                max-width: 220px;
-                height: 280px;
-            }
-
-            .chat-bubble {
-                font-size: 11px;
-                max-width: 90%;
-            }
-        }
-
-        /* ===================================== */
-        /* LARGE DESKTOP (1200px+) */
-        /* ===================================== */
-        @media screen and (min-width: 1200px) {
-            .container {
-                max-width: 650px;
-            }
-
-            .main-question {
-                font-size: 48px;
-            }
-
-            .card {
-                padding: 70px 50px;
-            }
-
-            .photo-frame {
-                max-width: 320px;
-                height: 400px;
-            }
+        @keyframes wave {
+            0%, 100% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1.2); }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Indicator -->
-    <div class="loading" id="loading"></div>
-
     <!-- Music Control Button -->
-    <div class="music-control" id="musicControl" title="Play/Pause Music">
+    <div class="music-control" id="musicControl" title="Click to play/pause music">
         <svg class="music-icon play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
@@ -655,12 +322,20 @@
             <rect x="6" y="4" width="4" height="16"></rect>
             <rect x="14" y="4" width="4" height="16"></rect>
         </svg>
+        <div class="music-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
     </div>
 
     <!-- Background Music -->
-    <audio id="bgMusic" loop preload="auto">
-        <!-- REPLACE WITH YOUR MUSIC FILE -->
+    <audio id="bgMusic" loop>
+        <!-- REPLACE THIS WITH YOUR MUSIC FILE -->
         <source src="il.mp3" type="audio/mpeg">
+        <!-- Or use a URL: <source src="https://example.com/music.mp3" type="audio/mpeg"> -->
     </audio>
 
     <div class="container">
@@ -699,218 +374,116 @@
     </div>
 
     <script>
-        // Get all elements
         const questionCard = document.getElementById('questionCard');
         const successPage = document.getElementById('successPage');
         const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
         const bubble1 = document.getElementById('bubble1');
         const bubble2 = document.getElementById('bubble2');
+
+        // Music controls
         const bgMusic = document.getElementById('bgMusic');
         const musicControl = document.getElementById('musicControl');
         const playIcon = document.querySelector('.play-icon');
         const pauseIcon = document.querySelector('.pause-icon');
-        const loading = document.getElementById('loading');
+        const musicWaves = document.querySelector('.music-waves');
         
         let isPlaying = false;
-        let noClickCount = 0;
 
         // Set initial volume
         bgMusic.volume = 0.4;
 
-        // Prevent default touch behaviors
-        document.addEventListener('touchmove', (e) => {
-            if (e.scale !== 1) { 
-                e.preventDefault(); 
-            }
-        }, { passive: false });
-
-        // Music toggle function
+        // Function to toggle music
         function toggleMusic() {
             if (isPlaying) {
                 bgMusic.pause();
                 playIcon.style.display = 'block';
                 pauseIcon.style.display = 'none';
+                musicWaves.classList.remove('active');
                 musicControl.classList.remove('playing');
             } else {
-                const playPromise = bgMusic.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        playIcon.style.display = 'none';
-                        pauseIcon.style.display = 'block';
-                        musicControl.classList.add('playing');
-                    }).catch(err => {
-                        console.log('Playback prevented:', err);
-                    });
-                }
+                bgMusic.play().catch(err => {
+                    console.log('Playback failed:', err);
+                });
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                musicWaves.classList.add('active');
+                musicControl.classList.add('playing');
             }
             isPlaying = !isPlaying;
         }
 
-        // Music control click/touch
-        musicControl.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleMusic();
-        });
+        // Click event for music control
+        musicControl.addEventListener('click', toggleMusic);
 
-        // Show first bubble
+        // Show first bubble on load
         setTimeout(() => {
             bubble1.classList.add('show');
         }, 500);
 
-        // No button - Mobile optimized
-        // No button - Mobile optimized
-let noTouchTimer;
-
-noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    bubble2.classList.add('show');
-    
-    noTouchTimer = setTimeout(() => {
-        bubble2.classList.remove('show');
-    }, 2500);
-});
-
-noBtn.addEventListener('touchend', (e) => {
-    e.preventDefault();
-    clearTimeout(noTouchTimer);
-});
-
-noBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    noClickCount++;
-    
-    const messages = [
-        "Don't break our rom-com storyline 💔",
-        "Think about all our memories! 🥺",
-        "Pretty please? 🙏",
-        "I promise to make it special! ✨",
-        "You know you want to say yes! 😊"
-    ];
-    
-    const messageIndex = Math.min(noClickCount, messages.length - 1);
-    bubble2.querySelector('span').textContent = messages[messageIndex];
-    bubble2.classList.add('show');
-    
-    setTimeout(() => {
-        bubble2.classList.remove('show');
-    }, 3000);
-});
-
-// Desktop hover for No button
-if (window.matchMedia("(hover: hover)").matches) {
-    noBtn.addEventListener('mouseenter', () => {
-        bubble2.classList.add('show');
-    });
-
-    noBtn.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-            bubble2.classList.remove('show');
-        }, 2000);
-    });
-}
-
-// Desktop hover for No button
-if (window.matchMedia("(hover: hover)").matches) {
-    let hoverTimeout;
-    
-    noBtn.addEventListener('mouseenter', () => {
-        if (!isProcessing) {
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            bubble2.querySelector('span').textContent = randomMessage;
+        // No button interaction
+        let noClickCount = 0;
+        noBtn.addEventListener('mouseenter', () => {
             bubble2.classList.add('show');
-        }
-    });
-
-    noBtn.addEventListener('mouseleave', () => {
-        hoverTimeout = setTimeout(() => {
-            bubble2.classList.remove('show');
-        }, 2000);
-    });
-}
-
-        // Yes button - Mobile optimized
-        yesBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Show loading
-            loading.style.display = 'block';
-            
-            setTimeout(() => {
-                loading.style.display = 'none';
-                questionCard.style.display = 'none';
-                successPage.classList.add('show');
-                bubble1.classList.remove('show');
-                bubble2.classList.remove('show');
-                
-                // Auto-play music
-                if (!isPlaying) {
-                    setTimeout(() => {
-                        toggleMusic();
-                    }, 300);
-                }
-                
-                // Create floating hearts
-                createFloatingHearts();
-            }, 500);
         });
 
-        // Floating hearts function
+        noBtn.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                bubble2.classList.remove('show');
+            }, 2000);
+        });
+
+        noBtn.addEventListener('click', () => {
+            noClickCount++;
+            const messages = [
+                "Don't break our rom-com storyline 💔",
+                "Think about all our memories! 🥺",
+                "Pretty please? 🙏",
+                "I promise to make it special! ✨"
+            ];
+            
+            if (noClickCount < messages.length) {
+                bubble2.querySelector('span').textContent = messages[noClickCount];
+                bubble2.classList.add('show');
+                setTimeout(() => {
+                    bubble2.classList.remove('show');
+                }, 3000);
+            }
+        });
+
+        // Yes button interaction
+        yesBtn.addEventListener('click', () => {
+            questionCard.style.display = 'none';
+            successPage.classList.add('show');
+            bubble1.classList.remove('show');
+            bubble2.classList.remove('show');
+            
+            // Auto-play music when Yes is clicked (if not already playing)
+            if (!isPlaying) {
+                toggleMusic();
+            }
+            
+            // Create floating hearts
+            createFloatingHearts();
+        });
+
         function createFloatingHearts() {
             const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝'];
             
-            const heartInterval = setInterval(() => {
+            setInterval(() => {
                 const heart = document.createElement('div');
                 heart.className = 'heart-float';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.animationDelay = Math.random() * 2 + 's';
-                heart.style.fontSize = (Math.random() * 15 + 20) + 'px';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
                 document.body.appendChild(heart);
                 
                 setTimeout(() => {
                     heart.remove();
                 }, 4000);
-            }, 400);
-
-            // Stop after 30 seconds to prevent memory issues
-            setTimeout(() => {
-                clearInterval(heartInterval);
-            }, 30000);
+            }, 300);
         }
-
-        // Prevent zoom on double tap
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', (e) => {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
-        // Handle orientation change
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-            }, 100);
-        });
-
-        // Preload images
-        const imagesToPreload = [
-            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop',
-            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-            'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=500&fit=crop'
-        ];
-
-        imagesToPreload.forEach((src) => {
-            const img = new Image();
-            img.src = src;
-        });
     </script>
 </body>
 </html>
-
-
-
-
