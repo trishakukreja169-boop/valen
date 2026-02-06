@@ -759,60 +759,56 @@
         }, 500);
 
         // No button - Mobile optimized
-        let noTouchTimer;
-        
-        noBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            bubble2.classList.add('show');
-            
-            // No button - Fixed for mobile to show messages one by one
-const messages = [
-    "Don't break our rom-com storyline 💔",
-    "Think about all our memories! 🥺",
-    "Pretty please? 🙏",
-    "I promise to make it special! ✨",
-    "You know you want to say yes! 😊",
-    "Come on, be my Valentine! 💝",
-    "Last chance to make the right choice! 😘"
-];
+        // No button - Mobile optimized
+let noTouchTimer;
 
-let isProcessing = false;
-
-// Function to show message
-function showNoMessage() {
-    if (isProcessing) return; // Prevent multiple rapid clicks
-    
-    isProcessing = true;
-    noClickCount++;
-    
-    // Get message index (cycle through messages)
-    const messageIndex = (noClickCount - 1) % messages.length;
-    
-    // Update bubble text
-    bubble2.querySelector('span').textContent = messages[messageIndex];
+noBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
     bubble2.classList.add('show');
     
-    // Hide after 3 seconds
-    setTimeout(() => {
+    noTouchTimer = setTimeout(() => {
         bubble2.classList.remove('show');
-        isProcessing = false;
-    }, 3000);
-}
+    }, 2500);
+});
 
-// Handle both touch and click events
 noBtn.addEventListener('touchend', (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    showNoMessage();
+    clearTimeout(noTouchTimer);
 });
 
 noBtn.addEventListener('click', (e) => {
-    // Only handle click if it wasn't from a touch event
-    if (e.detail !== 0) {
-        e.preventDefault();
-        showNoMessage();
-    }
+    e.preventDefault();
+    noClickCount++;
+    
+    const messages = [
+        "Don't break our rom-com storyline 💔",
+        "Think about all our memories! 🥺",
+        "Pretty please? 🙏",
+        "I promise to make it special! ✨",
+        "You know you want to say yes! 😊"
+    ];
+    
+    const messageIndex = Math.min(noClickCount, messages.length - 1);
+    bubble2.querySelector('span').textContent = messages[messageIndex];
+    bubble2.classList.add('show');
+    
+    setTimeout(() => {
+        bubble2.classList.remove('show');
+    }, 3000);
 });
+
+// Desktop hover for No button
+if (window.matchMedia("(hover: hover)").matches) {
+    noBtn.addEventListener('mouseenter', () => {
+        bubble2.classList.add('show');
+    });
+
+    noBtn.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+            bubble2.classList.remove('show');
+        }, 2000);
+    });
+}
 
 // Desktop hover for No button
 if (window.matchMedia("(hover: hover)").matches) {
@@ -914,6 +910,7 @@ if (window.matchMedia("(hover: hover)").matches) {
     </script>
 </body>
 </html>
+
 
 
 
